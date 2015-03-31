@@ -2,6 +2,7 @@ package cz.ghibulo.kalkulacka;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,10 +10,16 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.LinkedList;
+
 public class HlavniOkno extends ActionBarActivity {
 
     boolean premazDisplej, stiskRovnitka;
     ExpressionParser vyraz;
+
+    //zasobnik vyrazu pro zobrazeni vysledku uzavorkovaneho mezivyrazu
+    LinkedList<ExpressionParser> stackExpr = new LinkedList<ExpressionParser>();
+    ExpressionParser exprForStack = null;
 
     Priklad p1,p2,normkalk,aktualni;
 
@@ -53,6 +60,33 @@ public class HlavniOkno extends ActionBarActivity {
 
 
     }
+    private double exprToDisplej (ExpressionParser co) {
+
+        String vysledek=" ";
+        double vysledekDouble = 0;
+        try {
+
+            Log.i("---", co.expr);
+            vysledekDouble=co.dejVysledek();
+            vysledek = String.format("%.6f", vysledekDouble);
+
+
+        } catch (Exception e) {
+            toDisplej("Error");return Double.MAX_VALUE;
+        }
+
+        toDisplej(vysledek);
+        return vysledekDouble;
+
+    }
+
+    private void addTokenToExpr(String zmacknuto) {
+        vyraz.addTokenToExpr(zmacknuto);
+        boolean nenizavorka = !(zmacknuto.equals(")") | zmacknuto.equals("("));
+        if ((exprForStack!=null)&(nenizavorka)) {
+            exprForStack.addTokenToExpr(zmacknuto);
+        }
+    }
 
 
     @Override
@@ -69,7 +103,8 @@ public class HlavniOkno extends ActionBarActivity {
         if (stiskRovnitka) {
             vyraz.smazVstup();
         }
-        vyraz.addTokenToExpr(zmacknuto);
+
+        addTokenToExpr(zmacknuto); //vyraz.addTokenToExpr(zmacknuto) + vnitrni vyraz stacku
         toDisplej(zmacknuto);
         premazDisplej=stiskRovnitka=false;
     }
@@ -86,20 +121,10 @@ public class HlavniOkno extends ActionBarActivity {
         if (zmacknuto.equals("=")) {
 
             stiskRovnitka=true;
-            String vysledek=" ";
-            double vysledekDouble = 0;
-            try {
 
-                vysledekDouble=vyraz.dejVysledek();
-                vysledek = String.format("%.6f", vysledekDouble);
+            double v = exprToDisplej(vyraz);
 
-
-            } catch (Exception e) {
-                toDisplej("Error");return;
-            }
-
-            toDisplej(vysledek);
-            if (aktualni.kontrolaVysledku(vysledekDouble)) {
+            if (aktualni.kontrolaVysledku(v)) {
                 Toast.makeText(this.getApplicationContext(),getString(R.string.congrats), Toast.LENGTH_LONG).show();
                 return;
             }
@@ -107,7 +132,33 @@ public class HlavniOkno extends ActionBarActivity {
 
 
         } else {
-            vyraz.addTokenToExpr(zmacknuto);
+            if (zmacknuto.equals("(")) {
+                toDisplej("0");premazDisplej=true;
+                if (exprForStack!=null) stackExpr.push(exprForStack);
+                exprForStack = new ExpressionParser();
+            }
+
+            if (zmacknuto.equals(")")) {
+
+                exprToDisplej(exprForStack);
+                if (stackExpr.isEmpty()) { //konci posledni zavorka
+                    exprForStack = null;
+                } else {                    //vysledek vnitrni zavorky do vnejsi
+                    try {
+                        ExpressionParser ex = stackExpr.pop();
+                        ex.addDoubleToExpr(exprForStack.dejVysledek());
+                        exprForStack = ex;
+                    } catch (Exception e ) {
+                        toDisplej("Error");return;
+                    }
+
+                }
+
+
+            }
+
+            addTokenToExpr(zmacknuto); //vyraz.addTokenToExpr(zmacknuto) + vnitrni vyraz stacku
+
             stiskRovnitka=false;
 
         }
@@ -138,6 +189,8 @@ public class HlavniOkno extends ActionBarActivity {
         premazDisplej=true;
         stiskRovnitka=false;
         vyraz.smazVstup();
+        exprForStack=null;
+        stackExpr.clear();
         toDisplej("0");
         aktualni=jaky;
         jaky.zaciname();

@@ -12,7 +12,7 @@ public class ExpressionParser {
      // Associativity constants for operators
     private static final int LEFT_ASSOC  = 0;
     private static final int RIGHT_ASSOC = 1;
-    private String expr;
+    public String expr;
 
     public ExpressionParser() {
 
@@ -45,7 +45,12 @@ public class ExpressionParser {
                 expr += token;
     }
 
+    public void addDoubleToExpr(double cislo) {
+        expr += (" "+cislo+" ");
+    }
+
     public double dejVysledek() {
+
         String[] output = infixToRPN(expr.split(" "));
         double vysledek = RPNtoDouble( output );
         return vysledek;
@@ -137,7 +142,7 @@ public class ExpressionParser {
             // If token is a number
             else
             {
-                out.add(token);
+                if (!(token.equals(""))) out.add(token);
             }
         }
         while (!stack.empty())
