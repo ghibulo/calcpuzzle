@@ -1,25 +1,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".HlavniOkno"
     android:gravity="top|center_vertical|center_horizontal"
     android:id="@+id/celklay"
     android:background="#be393939">
 
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/malydisplej"
+        android:background="#ffbfffbb"
+        android:gravity="top|right"
+        android:textSize="20dp"
+        android:singleLine="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
 
-<TextView
+    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="0"
             android:id="@+id/displej"
             android:textSize="40dp"
             android:background="#ffbfffbb"
-            android:layout_margin="10dp"
-    android:gravity="top" />
 
+        android:singleLine="true"
+        android:layout_alignLeft="@+id/malydisplej"
+        android:layout_alignStart="@+id/malydisplej"
+        android:layout_below="@+id/malydisplej"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center" />
 
 
     <cz.ghibulo.kalkulacka.NasButton
@@ -225,8 +238,6 @@
         android:onClick="onClickNONum"
         android:layout_below="@+id/bdeleno"
         android:layout_alignLeft="@+id/bdeleno" />
-
-
 
 
 </RelativeLayout>

@@ -66,7 +66,7 @@ public class HlavniOkno extends ActionBarActivity {
         double vysledekDouble = 0;
         try {
 
-            Log.i("---", co.expr);
+            //Log.i("---", co.expr);
             vysledekDouble=co.dejVysledek();
             vysledek = String.format("%.6f", vysledekDouble);
 
@@ -77,6 +77,12 @@ public class HlavniOkno extends ActionBarActivity {
 
         toDisplej(vysledek);
         return vysledekDouble;
+
+    }
+
+    private void toMalyDisplej(String co) {
+        TextView disp = (TextView)findViewById(R.id.malydisplej);
+        disp.setText(co+" ");
 
     }
 
@@ -120,6 +126,7 @@ public class HlavniOkno extends ActionBarActivity {
 
         if (zmacknuto.equals("=")) {
 
+            toMalyDisplej("");
             stiskRovnitka=true;
 
             double v = exprToDisplej(vyraz);
@@ -158,7 +165,7 @@ public class HlavniOkno extends ActionBarActivity {
             }
 
             addTokenToExpr(zmacknuto); //vyraz.addTokenToExpr(zmacknuto) + vnitrni vyraz stacku
-
+            toMalyDisplej(zmacknuto);
             stiskRovnitka=false;
 
         }
@@ -192,6 +199,7 @@ public class HlavniOkno extends ActionBarActivity {
         exprForStack=null;
         stackExpr.clear();
         toDisplej("0");
+        toMalyDisplej("");
         aktualni=jaky;
         jaky.zaciname();
     }
