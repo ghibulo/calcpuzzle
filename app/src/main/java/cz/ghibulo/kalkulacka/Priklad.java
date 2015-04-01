@@ -6,14 +6,16 @@ import android.widget.TextView;
 /**
  * Created by ghibulo on 30.3.15.
  */
+
 public class Priklad {
     NasButton[] tlacitka;
     int[] pocetStisku;
     double vysledek;
+    public static final int pocetTl = 18;
 
     public Priklad(Activity akt) {
-        tlacitka = new NasButton[17];
-        pocetStisku = new int[17];
+        tlacitka = new NasButton[pocetTl];
+        pocetStisku = new int[pocetTl];
         vysledek=Double.MAX_VALUE;
         tlacitka[0] = (NasButton)akt.findViewById(R.id.b0);
         tlacitka[1] = (NasButton)akt.findViewById(R.id.b1);
@@ -32,6 +34,7 @@ public class Priklad {
         tlacitka[14] = (NasButton)akt.findViewById(R.id.bdeleno);
         tlacitka[15] = (NasButton)akt.findViewById(R.id.blevazav);
         tlacitka[16] = (NasButton)akt.findViewById(R.id.bpravazav);
+        tlacitka[17] = (NasButton)akt.findViewById(R.id.bcancel);
     }
 
     public void nastavPocetStisku(int pocet, String vyznambut) {

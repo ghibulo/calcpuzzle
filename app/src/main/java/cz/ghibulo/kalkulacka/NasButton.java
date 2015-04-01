@@ -2,6 +2,7 @@ package cz.ghibulo.kalkulacka;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.util.AttributeSet;
 //import android.view.View;
 import android.widget.Button;
@@ -11,6 +12,7 @@ import android.widget.Button;
 public class NasButton extends Button  {
     int  maxStisku;
     String vyznam;
+
 
     public NasButton(Context context){
         super(context);
@@ -36,6 +38,7 @@ public class NasButton extends Button  {
         setWidth(70);
         setTextColor(Color.WHITE);
 
+
         maxStisku = -1; //nekonecno
         nastavPocetStisku(maxStisku);
         int myId = this.getId();
@@ -57,6 +60,7 @@ public class NasButton extends Button  {
             case R.id.bdeleno: vyznam = "/";break;
             case R.id.blevazav: vyznam = "(";break;
             case R.id.bpravazav: vyznam = ")";break;
+            case R.id.bcancel: vyznam = "c";break;
             default: vyznam = "chyba";break;
         }
     }
