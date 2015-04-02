@@ -84,7 +84,7 @@ public class HlavniOkno extends ActionBarActivity {
 
             //Log.i("---", co.expr);
             vysledekDouble=co.dejVysledek();
-            vysledek = String.format("%.6f", vysledekDouble);
+            vysledek = String.format("%.6f", vysledekDouble).replace(",",".");
 
 
         } catch (Exception e) {
@@ -99,7 +99,7 @@ public class HlavniOkno extends ActionBarActivity {
 
 
     private void zPametinaDisplej() {
-        String strCislo = String.format("%.6f", pametM);
+        String strCislo = String.format("%.6f", pametM).replace(",",".");
         toDisplej(strCislo);
         addTokenToExpr(strCislo);
     }
@@ -253,7 +253,7 @@ public class HlavniOkno extends ActionBarActivity {
                     toDisplej(getString(R.string.error));
                     chybovyStav=true;
                 } else
-                   toDisplej(String.format("%.6f", zdisp));
+                   toDisplej(String.format("%.6f", zdisp).replace(",","."));
             } else {
                 obsahMalehoDispleje[1] = zmacknuto;
                 obnovMalyDisplej();
@@ -282,7 +282,7 @@ public class HlavniOkno extends ActionBarActivity {
 
     private double getDisplej() {
         TextView disp = (TextView)findViewById(R.id.displej);
-        return Double.parseDouble(disp.getText().toString());
+        return Double.parseDouble(disp.getText().toString().replace(",","."));
     }
 
 

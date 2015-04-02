@@ -18,9 +18,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1b0f7a1c-62d6-4a5f-89aa-6fbbcdba35b0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/cz/ghibulo/kalkulacka/ExpressionParser.java" afterPath="$PROJECT_DIR$/app/src/main/java/cz/ghibulo/kalkulacka/ExpressionParser.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/calcdisplej.apk" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/k.apk" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/kzav.apk" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/novak.apk" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/cz/ghibulo/kalkulacka/HlavniOkno.java" afterPath="$PROJECT_DIR$/app/src/main/java/cz/ghibulo/kalkulacka/HlavniOkno.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Kalkulacka.iws" />
@@ -84,13 +86,13 @@
       <file leaf-file-name="HlavniOkno.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/cz/ghibulo/kalkulacka/HlavniOkno.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.3361344" vertical-offset="0" max-vertical-offset="4995">
-              <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.27992958" vertical-offset="1161" max-vertical-offset="4995">
+              <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding>
-                <element signature="e#2646#2671#0" expanded="true" />
-                <element signature="e#5835#5863#0" expanded="true" />
-                <element signature="e#7094#7119#0" expanded="true" />
-                <element signature="e#7483#7508#0" expanded="true" />
+                <element signature="e#2663#2688#0" expanded="true" />
+                <element signature="e#5869#5897#0" expanded="true" />
+                <element signature="e#7128#7153#0" expanded="true" />
+                <element signature="e#7517#7542#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1658,10 +1660,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1635">
           <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="e#2646#2671#0" expanded="true" />
-            <element signature="e#5835#5863#0" expanded="true" />
-            <element signature="e#7094#7119#0" expanded="true" />
-            <element signature="e#7483#7508#0" expanded="true" />
+            <element signature="e#2663#2688#0" expanded="true" />
+            <element signature="e#5869#5897#0" expanded="true" />
+            <element signature="e#7128#7153#0" expanded="true" />
+            <element signature="e#7517#7542#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1707,10 +1709,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1515">
           <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding>
-            <element signature="e#2646#2671#0" expanded="true" />
-            <element signature="e#5835#5863#0" expanded="true" />
-            <element signature="e#7094#7119#0" expanded="true" />
-            <element signature="e#7483#7508#0" expanded="true" />
+            <element signature="e#2663#2688#0" expanded="true" />
+            <element signature="e#5869#5897#0" expanded="true" />
+            <element signature="e#7128#7153#0" expanded="true" />
+            <element signature="e#7517#7542#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1748,10 +1750,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
           <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
           <folding>
-            <element signature="e#2646#2671#0" expanded="true" />
-            <element signature="e#5835#5863#0" expanded="true" />
-            <element signature="e#7094#7119#0" expanded="true" />
-            <element signature="e#7483#7508#0" expanded="true" />
+            <element signature="e#2663#2688#0" expanded="true" />
+            <element signature="e#5869#5897#0" expanded="true" />
+            <element signature="e#7128#7153#0" expanded="true" />
+            <element signature="e#7517#7542#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1782,10 +1784,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
           <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
           <folding>
-            <element signature="e#2646#2671#0" expanded="true" />
-            <element signature="e#5835#5863#0" expanded="true" />
-            <element signature="e#7094#7119#0" expanded="true" />
-            <element signature="e#7483#7508#0" expanded="true" />
+            <element signature="e#2663#2688#0" expanded="true" />
+            <element signature="e#5869#5897#0" expanded="true" />
+            <element signature="e#7128#7153#0" expanded="true" />
+            <element signature="e#7517#7542#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1816,10 +1818,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="536" max-vertical-offset="1485">
           <caret line="47" column="27" selection-start-line="47" selection-start-column="27" selection-end-line="47" selection-end-column="27" />
           <folding>
-            <element signature="e#2646#2671#0" expanded="true" />
-            <element signature="e#5835#5863#0" expanded="true" />
-            <element signature="e#7094#7119#0" expanded="true" />
-            <element signature="e#7483#7508#0" expanded="true" />
+            <element signature="e#2663#2688#0" expanded="true" />
+            <element signature="e#5869#5897#0" expanded="true" />
+            <element signature="e#7128#7153#0" expanded="true" />
+            <element signature="e#7517#7542#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1840,10 +1842,10 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1380">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
           <folding>
-            <element signature="e#2646#2671#0" expanded="true" />
-            <element signature="e#5835#5863#0" expanded="true" />
-            <element signature="e#7094#7119#0" expanded="true" />
-            <element signature="e#7483#7508#0" expanded="true" />
+            <element signature="e#2663#2688#0" expanded="true" />
+            <element signature="e#5869#5897#0" expanded="true" />
+            <element signature="e#7128#7153#0" expanded="true" />
+            <element signature="e#7517#7542#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2077,13 +2079,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/cz/ghibulo/kalkulacka/HlavniOkno.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3361344" vertical-offset="0" max-vertical-offset="4995">
-          <caret line="64" column="36" selection-start-line="64" selection-start-column="36" selection-end-line="64" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.27992958" vertical-offset="1161" max-vertical-offset="4995">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
           <folding>
-            <element signature="e#2646#2671#0" expanded="true" />
-            <element signature="e#5835#5863#0" expanded="true" />
-            <element signature="e#7094#7119#0" expanded="true" />
-            <element signature="e#7483#7508#0" expanded="true" />
+            <element signature="e#2663#2688#0" expanded="true" />
+            <element signature="e#5869#5897#0" expanded="true" />
+            <element signature="e#7128#7153#0" expanded="true" />
+            <element signature="e#7517#7542#0" expanded="true" />
           </folding>
         </state>
       </provider>
