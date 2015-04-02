@@ -30,6 +30,8 @@ public class ExpressionParser {
         OPERATORS.put("-", new int[] { 0, LEFT_ASSOC });
         OPERATORS.put("*", new int[] { 5, LEFT_ASSOC });
         OPERATORS.put("/", new int[] { 5, LEFT_ASSOC });
+        OPERATORS.put("od", new int[] { 10, LEFT_ASSOC });
+
     }
 
     public void addTokenToExpr(String token) {
@@ -167,18 +169,26 @@ public class ExpressionParser {
             }
             else
             {
-                // Token is an operator: pop top two entries
-                Double d2 = Double.valueOf( stack.pop() );
-                Double d1 = Double.valueOf( stack.pop() );
+                Double result =0.0;
+                if (token.equals("od")) { //zatim jedina unarni operace
+                    Double d1 = Double.valueOf( stack.pop() );
+                    result = Math.sqrt(d1);
 
-                //Get the result
-                Double result = token.compareTo("+") == 0 ? d1 + d2 :
-                                token.compareTo("-") == 0 ? d1 - d2 :
-                                token.compareTo("*") == 0 ? d1 * d2 :
-                                                            d1 / d2;
+                } else {
+                    // Token is bin-operator: pop top two entries
+                    Double d2 = Double.valueOf(stack.pop());
+                    Double d1 = Double.valueOf(stack.pop());
+
+                    //Get the result
+                    result = token.compareTo("+") == 0 ? d1 + d2 :
+                             token.compareTo("-") == 0 ? d1 - d2 :
+                             token.compareTo("*") == 0 ? d1 * d2 :
+                             d1 / d2;
+                }
 
                 // Push result onto stack
-                stack.push( String.valueOf( result ));
+                stack.push(String.valueOf(result));
+
             }
         }
 

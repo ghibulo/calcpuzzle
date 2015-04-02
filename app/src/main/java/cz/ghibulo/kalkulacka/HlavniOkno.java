@@ -15,7 +15,7 @@ import java.util.LinkedList;
 
 public class HlavniOkno extends ActionBarActivity {
 
-    boolean premazDisplej, stiskRovnitka;
+    boolean premazDisplej, stiskRovnitka, chybovyStav;
     ExpressionParser vyraz;
     double pametM;
     static private AudioManager klik;
@@ -35,7 +35,7 @@ public class HlavniOkno extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hlavni_okno);
         premazDisplej=true;
-        stiskRovnitka=false;
+        stiskRovnitka=chybovyStav=false;
         vyraz=new ExpressionParser();
         klik = (AudioManager)getSystemService(AUDIO_SERVICE);
         pametM=0;
@@ -88,7 +88,8 @@ public class HlavniOkno extends ActionBarActivity {
 
 
         } catch (Exception e) {
-            toDisplej("Error");return Double.MAX_VALUE;
+            toDisplej(getString(R.string.error));chybovyStav=true;
+            return Double.MAX_VALUE;
         }
 
         toDisplej(vysledek);
@@ -111,8 +112,10 @@ public class HlavniOkno extends ActionBarActivity {
             obsahMalehoDispleje[0] = " ";
         }
 
-        if (obsahMalehoDispleje[1].equals("*")) obsahMalehoDispleje[1]="x"; //krizek je hezci :-)
-        String obsah = String.format("- %s - %s ", obsahMalehoDispleje[0], obsahMalehoDispleje[1]);
+        if (obsahMalehoDispleje[1].equals("*")) obsahMalehoDispleje[1]="×";
+        if (obsahMalehoDispleje[1].equals("/")) obsahMalehoDispleje[1]="÷";
+        if (obsahMalehoDispleje[1].equals("od")) obsahMalehoDispleje[1]=" ";
+        String obsah = String.format("%s  %s ", obsahMalehoDispleje[0], obsahMalehoDispleje[1]);
         compMalyDisplej.setText(obsah);
     }
 
@@ -131,8 +134,15 @@ public class HlavniOkno extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_hlavni_okno, menu);
         return true;
     }
+    private void kontrolaStavu() {
+        if (chybovyStav) {
+            vymazVse();
+            chybovyStav=false;
+        }
+    }
 
     public void onClickNum (View view) {
+        kontrolaStavu();
         klik.playSoundEffect(AudioManager.FX_KEY_CLICK);
         NasButton tl = (NasButton)view;
         String zmacknuto = tl.vyznam;
@@ -148,6 +158,7 @@ public class HlavniOkno extends ActionBarActivity {
 
 
     public void onClickNONum (View view) {
+        kontrolaStavu();
         klik.playSoundEffect(AudioManager.FX_KEY_CLICK);
         NasButton tl = (NasButton)view;
         String zmacknuto = tl.vyznam;
@@ -194,7 +205,7 @@ public class HlavniOkno extends ActionBarActivity {
 
             double v = exprToDisplej(vyraz);
 
-            if (aktualni.kontrolaVysledku(v)) {
+            if ((aktualni.kontrolaVysledku(v))&&(!chybovyStav)) {
                 Toast.makeText(this.getApplicationContext(),getString(R.string.congrats), Toast.LENGTH_LONG).show();
                 return;
             }
@@ -226,18 +237,28 @@ public class HlavniOkno extends ActionBarActivity {
                         obnovMalyDisplej();
 
                     } catch (Exception e ) {
-                        toDisplej("Error");return;
+                        toDisplej(getString(R.string.error));
+                        chybovyStav=true;
+                        return;
                     }
 
                 }
+            } else
+
+            if (zmacknuto.equals("od")) {     //zatim jedina un-operace
+                double zdisp = getDisplej();
+
+                zdisp = Math.sqrt(zdisp);
+                if (zdisp!=zdisp) {
+                    toDisplej(getString(R.string.error));
+                    chybovyStav=true;
+                } else
+                   toDisplej(String.format("%.6f", zdisp));
             } else {
-                obsahMalehoDispleje[1]=zmacknuto;
+                obsahMalehoDispleje[1] = zmacknuto;
                 obnovMalyDisplej();
-                //toMalyDisplej(zmacknuto);
             }
-
             addTokenToExpr(zmacknuto); //vyraz.addTokenToExpr(zmacknuto) + vnitrni vyraz stacku
-
             stiskRovnitka=false;
 
         }

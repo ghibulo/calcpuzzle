@@ -8,4 +8,5 @@
     <string name="normkalkulacka">Běžná kalkulačka</string>
     <string name="congrats">Výborně... povedlo se ti to!</string>
     <string name="kaput">Rozbito</string>
+    <string name="error">Error</string>
 </resources>
