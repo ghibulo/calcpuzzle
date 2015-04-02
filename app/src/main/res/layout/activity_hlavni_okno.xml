@@ -16,7 +16,8 @@
         android:textSize="20dp"
         android:singleLine="true"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"
+        android:typeface="monospace" />
 
     <TextView
         android:layout_width="match_parent"
@@ -143,16 +144,6 @@
                 android:id="@+id/b0"
                 android:onClick="onClickNum" />
 
-            <cz.ghibulo.kalkulacka.NasButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-1"
-                android:background="@mipmap/pzavorka"
-                android:gravity="bottom|right"
-                android:id="@+id/bpravazav"
-                android:onClick="onClickNONum" />
-
-
 
             <cz.ghibulo.kalkulacka.NasButton
                 android:layout_width="wrap_content"
@@ -161,6 +152,15 @@
                 android:background="@mipmap/lzavorka"
                 android:gravity="bottom|right"
                 android:id="@+id/blevazav"
+                android:onClick="onClickNONum" />
+
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
+                android:background="@mipmap/pzavorka"
+                android:gravity="bottom|right"
+                android:id="@+id/bpravazav"
                 android:onClick="onClickNONum" />
 
 
@@ -210,7 +210,56 @@
 
         </TableRow>
 
+
         <TableRow android:gravity="center_horizontal">
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
+                android:background="@mipmap/mplus"
+                android:gravity="bottom|right"
+                android:id="@+id/bmplus"
+                android:onClick="onClickNONum" />
+
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
+                android:background="@mipmap/mminus"
+                android:gravity="bottom|right"
+                android:id="@+id/bmminus"
+                android:onClick="onClickNONum" />
+
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
+                android:background="@mipmap/mc"
+                android:gravity="bottom|right"
+                android:id="@+id/bmc"
+                android:onClick="onClickNONum" />
+
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
+                android:background="@mipmap/mr"
+                android:gravity="bottom|right"
+                android:id="@+id/bmr"
+                android:onClick="onClickNONum" />
+
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
+                android:background="@mipmap/odmocnina"
+                android:gravity="bottom|right"
+                android:id="@+id/bodmocnina"
+                android:onClick="onClickNONum" />
 
             <cz.ghibulo.kalkulacka.NasButton
                 android:layout_width="wrap_content"

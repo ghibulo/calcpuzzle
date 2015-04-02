@@ -11,7 +11,7 @@ public class Priklad {
     NasButton[] tlacitka;
     int[] pocetStisku;
     double vysledek;
-    public static final int pocetTl = 18;
+    public static final int pocetTl = 23;
 
     public Priklad(Activity akt) {
         tlacitka = new NasButton[pocetTl];
@@ -35,6 +35,11 @@ public class Priklad {
         tlacitka[15] = (NasButton)akt.findViewById(R.id.blevazav);
         tlacitka[16] = (NasButton)akt.findViewById(R.id.bpravazav);
         tlacitka[17] = (NasButton)akt.findViewById(R.id.bcancel);
+        tlacitka[18] = (NasButton)akt.findViewById(R.id.bmplus);
+        tlacitka[19] = (NasButton)akt.findViewById(R.id.bmminus);
+        tlacitka[20] = (NasButton)akt.findViewById(R.id.bmc);
+        tlacitka[21] = (NasButton)akt.findViewById(R.id.bmr);
+        tlacitka[22] = (NasButton)akt.findViewById(R.id.bodmocnina);
     }
 
     public void nastavPocetStisku(int pocet, String vyznambut) {

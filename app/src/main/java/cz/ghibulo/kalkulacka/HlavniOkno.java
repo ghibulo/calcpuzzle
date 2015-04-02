@@ -17,7 +17,10 @@ public class HlavniOkno extends ActionBarActivity {
 
     boolean premazDisplej, stiskRovnitka;
     ExpressionParser vyraz;
+    double pametM;
     static private AudioManager klik;
+    String[] obsahMalehoDispleje;
+    TextView compMalyDisplej;
 
 
 
@@ -35,6 +38,12 @@ public class HlavniOkno extends ActionBarActivity {
         stiskRovnitka=false;
         vyraz=new ExpressionParser();
         klik = (AudioManager)getSystemService(AUDIO_SERVICE);
+        pametM=0;
+        obsahMalehoDispleje = new String[2];
+        obsahMalehoDispleje[0]=obsahMalehoDispleje[1]=" ";
+        compMalyDisplej = (TextView)findViewById(R.id.malydisplej);
+        obnovMalyDisplej();
+
 
 
         p1 = new Priklad(this);
@@ -87,10 +96,24 @@ public class HlavniOkno extends ActionBarActivity {
 
     }
 
-    private void toMalyDisplej(String co) {
-        TextView disp = (TextView)findViewById(R.id.malydisplej);
-        if (co.equals("*")) disp.setText("x "); else disp.setText(co+" "); //krizek je hezci :-)
 
+    private void zPametinaDisplej() {
+        String strCislo = String.format("%.6f", pametM);
+        toDisplej(strCislo);
+        addTokenToExpr(strCislo);
+    }
+
+
+    private void obnovMalyDisplej() {
+        if (pametM!=0) {
+            obsahMalehoDispleje[0] = "M";
+        } else {
+            obsahMalehoDispleje[0] = " ";
+        }
+
+        if (obsahMalehoDispleje[1].equals("*")) obsahMalehoDispleje[1]="x"; //krizek je hezci :-)
+        String obsah = String.format("- %s - %s ", obsahMalehoDispleje[0], obsahMalehoDispleje[1]);
+        compMalyDisplej.setText(obsah);
     }
 
     private void addTokenToExpr(String zmacknuto) {
@@ -136,11 +159,37 @@ public class HlavniOkno extends ActionBarActivity {
             return;
         }
 
+        if (zmacknuto.equals("m+")) {
+            pametM+=getDisplej();
+            obnovMalyDisplej();
+            return;
+        }
+
+        if (zmacknuto.equals("m-")) {
+            pametM-=getDisplej();
+            obnovMalyDisplej();
+            return;
+        }
+
+        if (zmacknuto.equals("mc")) {
+            pametM = 0;
+            obnovMalyDisplej();
+            return;
+        }
+
+
+        if (zmacknuto.equals("mr")) {
+            zPametinaDisplej();
+            return;
+        }
+
         premazDisplej=true;
 
         if (zmacknuto.equals("=")) {
 
-            toMalyDisplej("");
+
+            obsahMalehoDispleje[1]=" ";
+            obnovMalyDisplej();
             stiskRovnitka=true;
 
             double v = exprToDisplej(vyraz);
@@ -157,7 +206,8 @@ public class HlavniOkno extends ActionBarActivity {
                 toDisplej("0");premazDisplej=true;
                 if (exprForStack!=null) stackExpr.push(exprForStack);
                 exprForStack = new ExpressionParser();
-                toMalyDisplej("("+(stackExpr.size()+1)+")");
+                obsahMalehoDispleje[1]="("+(stackExpr.size()+1)+")";
+                obnovMalyDisplej();
             } else
 
             if (zmacknuto.equals(")")) {
@@ -165,20 +215,25 @@ public class HlavniOkno extends ActionBarActivity {
                 exprToDisplej(exprForStack);
                 if (stackExpr.isEmpty()) { //konci posledni zavorka
                     exprForStack = null;
-                    toMalyDisplej("");
+                    obsahMalehoDispleje[1]=" ";
+                    obnovMalyDisplej();
                 } else {                    //vysledek vnitrni zavorky do vnejsi
                     try {
                         ExpressionParser ex = stackExpr.pop();
                         ex.addDoubleToExpr(exprForStack.dejVysledek());
                         exprForStack = ex;
-                        toMalyDisplej("("+(stackExpr.size()+1)  +")");
+                        obsahMalehoDispleje[1]="("+(stackExpr.size()+1)  +")";
+                        obnovMalyDisplej();
+
                     } catch (Exception e ) {
                         toDisplej("Error");return;
                     }
 
                 }
             } else {
-                toMalyDisplej(zmacknuto);
+                obsahMalehoDispleje[1]=zmacknuto;
+                obnovMalyDisplej();
+                //toMalyDisplej(zmacknuto);
             }
 
             addTokenToExpr(zmacknuto); //vyraz.addTokenToExpr(zmacknuto) + vnitrni vyraz stacku
@@ -217,7 +272,9 @@ public class HlavniOkno extends ActionBarActivity {
         exprForStack=null;
         stackExpr.clear();
         toDisplej("0");
-        toMalyDisplej("");
+        pametM=0;
+        obsahMalehoDispleje[0]=" ";obsahMalehoDispleje[1]=" ";
+        obnovMalyDisplej();
     }
 
     private void zacniPriklad(Priklad jaky) {
