@@ -1,5 +1,6 @@
 package cz.ghibulo.kalkulacka;
 
+import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.LinkedList;
 
-public class HlavniOkno extends ActionBarActivity {
+public class HlavniOkno extends Activity {
 
     boolean premazDisplej, stiskRovnitka, chybovyStav;
     ExpressionParser vyraz;
@@ -33,6 +34,8 @@ public class HlavniOkno extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_hlavni_okno);
         premazDisplej=true;
         stiskRovnitka=chybovyStav=false;
@@ -115,6 +118,7 @@ public class HlavniOkno extends ActionBarActivity {
         if (obsahMalehoDispleje[1].equals("*")) obsahMalehoDispleje[1]="×";
         if (obsahMalehoDispleje[1].equals("/")) obsahMalehoDispleje[1]="÷";
         if (obsahMalehoDispleje[1].equals("od")) obsahMalehoDispleje[1]=" ";
+        if (obsahMalehoDispleje[1].equals("cs")) obsahMalehoDispleje[1]=" ";
         String obsah = String.format("%s  %s ", obsahMalehoDispleje[0], obsahMalehoDispleje[1]);
         compMalyDisplej.setText(obsah);
     }
@@ -253,7 +257,12 @@ public class HlavniOkno extends ActionBarActivity {
                     toDisplej(getString(R.string.error));
                     chybovyStav=true;
                 } else
-                   toDisplej(String.format("%.6f", zdisp).replace(",","."));
+                   toDisplej(String.format("%.6f", zdisp).replace(",", "."));
+            } else
+
+            if (zmacknuto.equals("cs")) {
+                double zdisp = getDisplej();
+                toDisplej(String.format("%.6f", -zdisp).replace(",", "."));
             } else {
                 obsahMalehoDispleje[1] = zmacknuto;
                 obnovMalyDisplej();
@@ -282,7 +291,7 @@ public class HlavniOkno extends ActionBarActivity {
 
     private double getDisplej() {
         TextView disp = (TextView)findViewById(R.id.displej);
-        return Double.parseDouble(disp.getText().toString().replace(",","."));
+        return Double.parseDouble(disp.getText().toString().replace(",", "."));
     }
 
 
@@ -293,8 +302,8 @@ public class HlavniOkno extends ActionBarActivity {
         exprForStack=null;
         stackExpr.clear();
         toDisplej("0");
-        pametM=0;
-        obsahMalehoDispleje[0]=" ";obsahMalehoDispleje[1]=" ";
+        //pametM=0;obsahMalehoDispleje[0]=" "; ... pamet nechame
+        obsahMalehoDispleje[1]=" ";
         obnovMalyDisplej();
     }
 

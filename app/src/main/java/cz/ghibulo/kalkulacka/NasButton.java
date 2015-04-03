@@ -66,6 +66,8 @@ public class NasButton extends Button  {
             case R.id.bmplus: vyznam = "m+";break;
             case R.id.bmr: vyznam = "mr";break;
             case R.id.bodmocnina: vyznam = "od";break;
+            case R.id.bzmenaznamenka: vyznam = "cs";break;
+            case R.id.bmocnina: vyznam = "m";break;
             default: vyznam = "chyba";break;
         }
     }

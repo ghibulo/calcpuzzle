@@ -174,6 +174,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-1"
+                android:id="@+id/bplus"
+                android:background="@mipmap/plus"
+                android:gravity="bottom|right"
+                android:onClick="onClickNONum"/>
+
+
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
                 android:background="@mipmap/minus"
                 android:gravity="bottom|right"
                 android:id="@+id/bminus"
@@ -199,14 +209,6 @@
 
 
 
-            <cz.ghibulo.kalkulacka.NasButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-1"
-                android:id="@+id/bplus"
-                android:background="@mipmap/plus"
-                android:gravity="bottom|right"
-                android:onClick="onClickNONum"/>
 
         </TableRow>
 
@@ -256,6 +258,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-1"
+                android:background="@mipmap/zmenaznamenka"
+                android:gravity="bottom|right"
+                android:id="@+id/bzmenaznamenka"
+                android:onClick="onClickNONum" />
+
+
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
+                android:background="@mipmap/mocnina"
+                android:gravity="bottom|right"
+                android:id="@+id/bmocnina"
+                android:onClick="onClickNONum" />
+
+            <cz.ghibulo.kalkulacka.NasButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-1"
                 android:background="@mipmap/odmocnina"
                 android:gravity="bottom|right"
                 android:id="@+id/bodmocnina"
@@ -270,7 +291,13 @@
                 android:id="@+id/bcancel"
                 android:onClick="onClickNONum" />
 
-            <cz.ghibulo.kalkulacka.NasButton
+        </TableRow>
+
+        <TableRow android:gravity="center_horizontal">
+
+
+
+        <cz.ghibulo.kalkulacka.NasButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="-1"
@@ -280,10 +307,11 @@
                 android:onClick="onClickNONum"
                 android:layout_below="@+id/bminus" />
 
-
-
-
         </TableRow>
+
+
+
+
     </TableLayout>
 
 </RelativeLayout>

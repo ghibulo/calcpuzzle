@@ -25,12 +25,14 @@ public class ExpressionParser {
     private static final Map<String, int[]> OPERATORS = new HashMap<String, int[]>();
     static
     {
-        // Map<"token", []{precendence, associativity}>
-        OPERATORS.put("+", new int[] { 0, LEFT_ASSOC });
-        OPERATORS.put("-", new int[] { 0, LEFT_ASSOC });
-        OPERATORS.put("*", new int[] { 5, LEFT_ASSOC });
-        OPERATORS.put("/", new int[] { 5, LEFT_ASSOC });
-        OPERATORS.put("od", new int[] { 10, LEFT_ASSOC });
+        // Map<"token", []{precendence, associativity, num-operands}>
+        OPERATORS.put("+", new int[] { 0, LEFT_ASSOC, 2 });
+        OPERATORS.put("-", new int[] { 0, LEFT_ASSOC, 2 });
+        OPERATORS.put("*", new int[] { 5, LEFT_ASSOC, 2 });
+        OPERATORS.put("/", new int[] { 5, LEFT_ASSOC, 2 });
+        OPERATORS.put("od", new int[] { 10, LEFT_ASSOC, 1 }); //odmocnina
+        OPERATORS.put("cs", new int[] { 10, LEFT_ASSOC, 1 }); //zmena znamenka
+        OPERATORS.put("m", new int[] { 10, LEFT_ASSOC, 2 }); //mocnina
 
     }
 
@@ -170,11 +172,14 @@ public class ExpressionParser {
             else
             {
                 Double result =0.0;
-                if (token.equals("od")) { //zatim jedina unarni operace
+                if (OPERATORS.get(token)[2]==1) {
+                //if (token.equals("od")) { //zatim jedina unarni operace
                     Double d1 = Double.valueOf( stack.pop() );
-                    result = Math.sqrt(d1);
+                    result = token.compareTo("od") == 0 ? Math.sqrt(d1) :
+                             -d1;
 
-                } else {
+
+                } else { //zatim ternarni operaci nemame
                     // Token is bin-operator: pop top two entries
                     Double d2 = Double.valueOf(stack.pop());
                     Double d1 = Double.valueOf(stack.pop());
@@ -183,7 +188,10 @@ public class ExpressionParser {
                     result = token.compareTo("+") == 0 ? d1 + d2 :
                              token.compareTo("-") == 0 ? d1 - d2 :
                              token.compareTo("*") == 0 ? d1 * d2 :
-                             d1 / d2;
+                             token.compareTo("/") == 0 ? d1 / d2 :
+                             Math.pow(d1,d2);
+
+
                 }
 
                 // Push result onto stack
