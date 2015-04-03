@@ -305,7 +305,8 @@
                 android:gravity="bottom|right"
                 android:id="@+id/brovnitko"
                 android:onClick="onClickNONum"
-                android:layout_below="@+id/bminus" />
+                android:layout_below="@+id/bminus"
+            android:layout_span="2" />
 
         </TableRow>
 

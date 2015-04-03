@@ -3,6 +3,7 @@ package cz.ghibulo.kalkulacka;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,8 @@ import android.view.View;
 //import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.media.MediaPlayer;
+import android.content.Context;
 
 import java.util.LinkedList;
 
@@ -19,10 +22,11 @@ public class HlavniOkno extends Activity {
     boolean premazDisplej, stiskRovnitka, chybovyStav;
     ExpressionParser vyraz;
     double pametM;
-    static private AudioManager klik;
     String[] obsahMalehoDispleje;
     TextView compMalyDisplej;
 
+    //MediaPlayer mpklik; ... najit neotravnej zvuk je problem, navic je hlasitost svazana s mediama
+    Vibrator vibe;  //vibrace
 
 
     //zasobnik vyrazu pro zobrazeni vysledku uzavorkovaneho mezivyrazu
@@ -40,7 +44,9 @@ public class HlavniOkno extends Activity {
         premazDisplej=true;
         stiskRovnitka=chybovyStav=false;
         vyraz=new ExpressionParser();
-        klik = (AudioManager)getSystemService(AUDIO_SERVICE);
+
+        //mpklik = MediaPlayer.create(this, R.raw.beep);
+        vibe = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         pametM=0;
         obsahMalehoDispleje = new String[2];
         obsahMalehoDispleje[0]=obsahMalehoDispleje[1]=" ";
@@ -147,7 +153,8 @@ public class HlavniOkno extends Activity {
 
     public void onClickNum (View view) {
         kontrolaStavu();
-        klik.playSoundEffect(AudioManager.FX_KEY_CLICK);
+        //mpklik.start();
+        vibe.vibrate(80);
         NasButton tl = (NasButton)view;
         String zmacknuto = tl.vyznam;
         tl.zaregistrujStisk();
@@ -163,7 +170,8 @@ public class HlavniOkno extends Activity {
 
     public void onClickNONum (View view) {
         kontrolaStavu();
-        klik.playSoundEffect(AudioManager.FX_KEY_CLICK);
+        //mpklik.start();
+        vibe.vibrate(80);
         NasButton tl = (NasButton)view;
         String zmacknuto = tl.vyznam;
 
