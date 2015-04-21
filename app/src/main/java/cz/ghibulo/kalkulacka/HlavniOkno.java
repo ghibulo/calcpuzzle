@@ -33,7 +33,7 @@ public class HlavniOkno extends Activity {
     LinkedList<ExpressionParser> stackExpr = new LinkedList<ExpressionParser>();
     ExpressionParser exprForStack = null;
 
-    Priklad p1,p2,normkalk,aktualni;
+    Priklad p1,p2,p3,normkalk,aktualni;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,27 +55,18 @@ public class HlavniOkno extends Activity {
 
 
 
-        p1 = new Priklad(this);
-        p1.vsechnyNaHodnotu (0); //vsechny rozbite
-        p1.nastavPocetStisku(2,"1");
-        p1.nastavPocetStisku(1,"5");
-        p1.nastavPocetStisku(1,"-");
-        p1.nastavPocetStisku(2,"3");
-        p1.nastavPocetStisku(1,"*");
-        p1.nastavPocetStisku(1,"=");
-        p1.nastavPocetStisku(1,"(");
-        p1.nastavPocetStisku(1,")");
+        p1 = new Priklad(this);//(15-3)*13
+        p1.nastavPocetStisku("all:0,1:2,5:1,-:1,3:2,*:1,=:1,(:1,):1");
         p1.nastavVysledek(12*13);
 
-        p2 = new Priklad(this);
-        p2.vsechnyNaHodnotu(0); //vsechny rozbite
-        p2.nastavPocetStisku(2,"9");
-        p2.nastavPocetStisku(2,"*");
-        p2.nastavPocetStisku(1,"2");
-        p2.nastavPocetStisku(1,"+");
-        p2.nastavPocetStisku(1,"8");
-        p2.nastavPocetStisku(2,"=");
+        p2 = new Priklad(this);//9+8=*2*9
+        p2.nastavPocetStisku("all:0,9:2,*:2,2:1,+:1,8:1,=:2");
         p2.nastavVysledek(18*17);
+
+        p3 = new Priklad(this);//2 m- x^y mr + 3 x^y mr + 4 x^y mr
+        p3.nastavPocetStisku("all:0,1:1,2:1,3:1,4:1,m-:1,m+:1,mr:4,mc:1,m:3,=:1,+:3,cs:1");
+        p3.nastavVysledek(-1.576389);//1/4+1/9+1/16-2
+
 
 
         normkalk = new Priklad(this);
@@ -110,6 +101,7 @@ public class HlavniOkno extends Activity {
     private void zPametinaDisplej() {
         String strCislo = String.format("%.6f", pametM).replace(",",".");
         toDisplej(strCislo);
+        uspesneVyreseno(pametM);
         addTokenToExpr(strCislo);
     }
 
@@ -167,6 +159,13 @@ public class HlavniOkno extends Activity {
         premazDisplej=stiskRovnitka=false;
     }
 
+    public void uspesneVyreseno(double pokus) {
+            if ((aktualni.kontrolaVysledku(pokus))&&(!chybovyStav)) {
+                Toast.makeText(this.getApplicationContext(),getString(R.string.congrats), Toast.LENGTH_LONG).show();
+                return;
+            }
+
+    }
 
     public void onClickNONum (View view) {
         kontrolaStavu();
@@ -217,10 +216,11 @@ public class HlavniOkno extends Activity {
 
             double v = exprToDisplej(vyraz);
 
-            if ((aktualni.kontrolaVysledku(v))&&(!chybovyStav)) {
+            /*if ((aktualni.kontrolaVysledku(v))&&(!chybovyStav)) {
                 Toast.makeText(this.getApplicationContext(),getString(R.string.congrats), Toast.LENGTH_LONG).show();
                 return;
-            }
+            }*/
+            uspesneVyreseno(v);
             vyraz.uzavorkuj();
 
 
@@ -331,16 +331,15 @@ public class HlavniOkno extends Activity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.akce_priklad1) {
-
-
-
             zacniPriklad(p1);
-
             return true;
         }
         if (id == R.id.akce_priklad2) {
-
             zacniPriklad(p2);
+            return true;
+        }
+        if (id == R.id.akce_priklad3) {
+            zacniPriklad(p3);
             return true;
         }
 

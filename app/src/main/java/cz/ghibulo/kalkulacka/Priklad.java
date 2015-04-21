@@ -11,7 +11,7 @@ public class Priklad {
     NasButton[] tlacitka;
     int[] pocetStisku;
     double vysledek;
-    public static final int pocetTl = 23;
+    public static final int pocetTl = 25;
 
     public Priklad(Activity akt) {
         tlacitka = new NasButton[pocetTl];
@@ -40,6 +40,8 @@ public class Priklad {
         tlacitka[20] = (NasButton)akt.findViewById(R.id.bmc);
         tlacitka[21] = (NasButton)akt.findViewById(R.id.bmr);
         tlacitka[22] = (NasButton)akt.findViewById(R.id.bodmocnina);
+        tlacitka[23] = (NasButton)akt.findViewById(R.id.bzmenaznamenka);
+        tlacitka[24] = (NasButton)akt.findViewById(R.id.bmocnina);
     }
 
     public void nastavPocetStisku(int pocet, String vyznambut) {
@@ -74,10 +76,25 @@ public class Priklad {
 
     public boolean kontrolaVysledku(double scim) {
 
+        return String.format("%.6f", scim).equals(String.format("%.6f", vysledek));
 
-        return (scim==vysledek);
+        //return (scim==vysledek);
     }
 
+    public void nastavPocetStisku(String jak) {
+        String[] seznamDvojic = jak.split(",");
+        String[] dvojice;
+        for (int i = 0;i<seznamDvojic.length;i++) {
+            dvojice=seznamDvojic[i].split(":");
+            if (dvojice[0].equals("all")) {
+                vsechnyNaHodnotu(Integer.parseInt(dvojice[1]));
+                continue;
+            }
+            nastavPocetStisku(Integer.parseInt(dvojice[1]),dvojice[0]);
+        }
+
+
+    }
 
 
 

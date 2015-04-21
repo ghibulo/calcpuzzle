@@ -5,6 +5,8 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/akce_priklad2" android:title="@string/priklad2"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/akce_priklad3" android:title="@string/priklad3"
+        android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/akce_normkalkulacka" android:title="@string/normkalkulacka"
         android:orderInCategory="100" app:showAsAction="never" />
 </menu>

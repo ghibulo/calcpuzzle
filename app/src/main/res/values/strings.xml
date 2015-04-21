@@ -3,8 +3,9 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Nastavení</string>
-    <string name="priklad1">Příklad 12x13 = </string>
-    <string name="priklad2">Příklad 18x17 =</string>
+    <string name="priklad1">Příklad 12x13</string>
+    <string name="priklad2">Příklad 18x17</string>
+    <string name="priklad3">Příklad 1/4+1/9+1/16-2</string>
     <string name="normkalkulacka">Běžná kalkulačka</string>
     <string name="congrats">Výborně... povedlo se ti to!</string>
     <string name="kaput">Rozbito</string>
